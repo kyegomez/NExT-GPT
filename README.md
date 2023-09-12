@@ -1,7 +1,7 @@
 [![Multi-Modality](agorabanner.png)](https://discord.gg/qUtxnK2NMf)
 
-# Paper-Implementation-Template
-A simple reproducible template to implement AI research papers 
+# Next GPT
+Implementation of "NExT-GPT: Any-to-Any Multimodal LLM",
 
 Paper Link
 
@@ -10,10 +10,11 @@ Paper Link
 * Agorians
 
 
-
 # Install
+`pip install omnimodal`
 
 # Usage
+
 
 # Architecture
 
@@ -24,4 +25,12 @@ Paper Link
 MIT
 
 # Citations
-
+```BibTeX
+@articles{wu2023nextgpt,
+  title={NExT-GPT: Any-to-Any Multimodal LLM},
+  author={Shengqiong Wu, Hao Fei, Leigang Qu, Wei Ji, Tat-Seng Chua},
+  journal = {CoRR},
+  volume = {abs/2309.05519},
+  year={2023}
+}
+```
