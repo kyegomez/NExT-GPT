@@ -52,6 +52,7 @@ class ImageDiffusor:
         images = self.pipe(prompt=prompt).images[0]
         return images
 
+
 class AudioDiffusor:
     def __init__(
         self,
