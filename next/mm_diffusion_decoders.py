@@ -1,7 +1,7 @@
 import torch
-from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler, AudioLDMPipeline
 from diffusers.utils import export_to_video
-
+import scipy
 
 class VideoDiffusor:
     def __init__(
@@ -51,3 +51,32 @@ class ImageDiffusor:
     def create(self, prompt):
         images = self.pipe(prompt=prompt).images[0]
         return images
+
+class AudioDiffusor:
+    def __init__(
+        self,
+        num_inference_steps: int = 10,
+        audio_length_in_s: float = 5.0,
+    ):
+        super().__init__()
+        self.num_inference_steps = num_inference_steps
+        self.audio_length_in_s = audio_length_in_s
+        
+        repo_id = "cvssp/audioldm-s-full-v2"
+        self.pipe = AudioLDMPipeline.from_pretrained(
+            repo_id,
+            torch_dtype=torch.float16
+        )
+        self.pipe = self.pipe.to("cuda")
+
+    def create(self, prompt):
+        audio = self.pipe(
+            prompt,
+            num_inference_steps=self.num_inference_steps,
+            audio_length_in_s=self.audio_length_in_s
+        )
+        audio = scipy.io.wavfile.writr("techno.wav", rate=16000, data=audio)
+        return audio
+
+
+
