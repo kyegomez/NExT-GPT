@@ -1,3 +1,4 @@
+import torch 
 from torch.nn import Module
 from transformers import AutoTokenizer
 
@@ -29,10 +30,10 @@ class NextGPTTokenizer:
     """
     def __init__(self):
         try:
-            self.processor = CLIPProcessor.from_pretrained("laion/CLIP-ViT-L-14-laion2B-s32B-b82K")
+            # self.processor = CLIPProcessor.from_pretrained("laion/CLIP-ViT-L-14-laion2B-s32B-b82K")
             self.tokenizer = AutoTokenizer.from_pretrained(
                 "EleutherAI/gpt-neox-20b",
-                additional_special_tokens=["<image>", "</image>"],
+                additional_special_tokens=["<image>", "</image>", "<audio>", "</audio>", "<video>", "</video>"],
                 eos_token="<eos>",
                 pad_token="<pad>",
                 extra_ids=0,
